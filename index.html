@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Happy Birthday to a Very Close Friend</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display, Plus Jakarta Sans & Caveat for handwritten notes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FDF8F5',
+                        blush: {
+                            light: '#FCEEE9',
+                            DEFAULT: '#F6D6CE',
+                            dark: '#E5B3A8'
+                        },
+                        gold: {
+                            light: '#F5E6C8',
+                            DEFAULT: '#D4A359',
+                            dark: '#B08036'
+                        },
+                        espresso: {
+                            light: '#6D544A',
+                            DEFAULT: '#3D2B24',
+                            dark: '#261A15'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        hand: ['"Caveat"', 'cursive']
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(61, 43, 36, 0.08)',
+                        'polaroid': '0 12px 28px -6px rgba(61, 43, 36, 0.14), 0 4px 10px -2px rgba(61, 43, 36, 0.06)',
+                        'glow': '0 0 25px rgba(212, 163, 89, 0.45)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Responsive Viewport & Base Styles */
+        html,
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+            font-size: 16px;
+        }
+
+        /* Ensure images and media embeds scale smoothly */
+        img,
+        svg,
+        video,
+        canvas,
+        audio,
+        iframe,
+        embed,
+        object {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Fast touch response without delay on mobile */
+        button,
+        [role="button"],
+        a,
+        input,
+        select,
+        textarea {
+            touch-action: manipulation;
+        }
+
+        body {
+            background-color: #FDF8F5;
+            color: #3D2B24;
+            background-image:
+                radial-gradient(circle at 15% 15%, rgba(246, 214, 206, 0.45) 0%, transparent 45%),
+                radial-gradient(circle at 85% 30%, rgba(212, 163, 89, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 50% 85%, rgba(246, 214, 206, 0.4) 0%, transparent 50%);
+        }
+
+        /* Subtle paper texture overlay */
+        .paper-texture {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+
+        /* Candle Flame Animation */
+        @keyframes flicker {
+
+            0%,
+            100% {
+                transform: scale(1) rotate(-1deg);
+                opacity: 1;
+            }
+
+            25% {
+                transform: scale(1.06, 0.96) rotate(2deg);
+                opacity: 0.92;
+            }
+
+            50% {
+                transform: scale(0.95, 1.05) rotate(-2deg);
+                opacity: 1;
+            }
+
+            75% {
+                transform: scale(1.04, 0.98) rotate(1deg);
+                opacity: 0.95;
+            }
+        }
+
+        .candle-flame {
+            transform-origin: bottom center;
+            animation: flicker 1.4s infinite ease-in-out;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .candle-flame.blown-out {
+            opacity: 0;
+            transform: scale(0.1) translateY(-10px);
+            animation: none;
+        }
+
+        /* Smoke puff when candle is blown out */
+        @keyframes smokeRise {
+            0% {
+                opacity: 0.75;
+                transform: translateY(0) scale(0.6);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-28px) scale(1.8);
+            }
+        }
+
+        .smoke-puff {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .smoke-puff.active {
+            animation: smokeRise 1.6s ease-out forwards;
+        }
+
+        /* Floating gentle sparkle */
+        @keyframes floatSlow {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-12px) rotate(4deg);
+            }
+        }
+
+        .animate-float {
+            animation: floatSlow 5s ease-in-out infinite;
+        }
+
+        /* Flip Card 3D Effect */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+
+        .transform-style-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .backface-hidden {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+
+        /* Envelope Flap & Letter Transitions */
+        .envelope-flap {
+            transform-origin: top center;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.3s;
+        }
+
+        .envelope-open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 5;
+        }
+
+        .letter-sheet {
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease;
+        }
+
+        /* Polaroid Washi Tape */
+        .washi-tape {
+            background: rgba(212, 163, 89, 0.32);
+            backdrop-filter: blur(2px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
+
+        .washi-tape-blush {
+            background: rgba(229, 179, 168, 0.45);
+        }
+
+        /* Canvas Confetti Overlay */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+    </style>
+</head>
+
+<body class="paper-texture font-sans antialiased selection:bg-blush selection:text-espresso">
+
+    <!-- Fullscreen Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Floating Top Utility Bar with Collapsible Mobile Menu -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-cream/90 border-b border-blush/60">
+        <nav class="max-w-5xl mx-auto px-4 py-2.5 sm:py-3" aria-label="Main Navigation">
+            <div class="flex items-center justify-between gap-3">
+                <!-- Brand / Logo -->
+                <a href="#hero-cake" class="flex items-center gap-2 group min-h-[44px] py-1">
+                    <span
+                        class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-blush-light text-gold-dark border border-gold/30 shadow-xs group-hover:scale-105 transition-transform">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    </span>
+                    <span class="font-serif font-bold text-espresso tracking-wide text-base sm:text-lg">Birthday
+                    </span>
+                </a>
+
+                <!-- Desktop Nav Links (Hidden on Mobile) -->
+                <!-- <div class="hidden md:flex items-center gap-6 text-base font-medium text-espresso">
+                    <a href="#hero-cake"
+                        class="hover:text-gold-dark transition min-h-[44px] inline-flex items-center">The Cake</a>
+                    <a href="#scrapbook"
+                        class="hover:text-gold-dark transition min-h-[44px] inline-flex items-center">Scrapbook</a>
+                    <a href="#birthday-letter"
+                        class="hover:text-gold-dark transition min-h-[44px] inline-flex items-center">Letter</a>
+                    <a href="#reasons"
+                        class="hover:text-gold-dark transition min-h-[44px] inline-flex items-center">Appreciation</a>
+                </div> -->
+
+                <!-- Desktop Actions (Hidden on Mobile) -->
+                <div class="hidden md:flex items-center gap-3">
+                    <!-- Sound Toggle Button -->
+                    <button id="sound-toggle" type="button" onclick="toggleSound()"
+                        class="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-full text-base font-medium bg-white/95 border border-blush-dark/50 text-espresso hover:bg-blush-light transition shadow-sm active:scale-95"
+                        title="Toggle Birthday Chime">
+                        <i id="sound-icon" data-lucide="volume-x" class="w-4 h-4 text-espresso-light"></i>
+                        <span id="sound-label">Sound Off</span>
+                    </button>
+
+                    <!-- Celebrate Confetti Burst Button -->
+                    <button type="button" onclick="triggerCelebration()"
+                        class="inline-flex items-center justify-center gap-2 min-h-[44px] px-5 py-2.5 rounded-full text-base font-semibold bg-espresso text-cream hover:bg-espresso-light transition shadow-sm active:scale-95">
+                        <i data-lucide="party-popper" class="w-4 h-4 text-gold"></i>
+                        <span>Celebrate!</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Actions: Quick Celebrate + Hamburger Toggle Button (Hidden on Desktop) -->
+                <div class="flex md:hidden items-center gap-2">
+                    <button type="button" onclick="triggerCelebration()"
+                        class="inline-flex items-center justify-center min-h-[44px] min-w-[44px] px-4 py-2.5 rounded-full text-base font-semibold bg-espresso text-cream hover:bg-espresso-light active:scale-95 shadow-sm"
+                        aria-label="Celebrate with Confetti">
+                        <i data-lucide="party-popper" class="w-4 h-4 text-gold"></i>
+                        <span class="text-sm ml-1.5 font-medium">Party</span>
+                    </button>
+
+                    <button id="mobile-menu-btn" type="button" onclick="toggleMobileMenu()"
+                        class="inline-flex items-center justify-center min-h-[44px] min-w-[44px] w-11 h-11 rounded-full bg-white/95 border border-blush-dark/50 text-espresso hover:bg-blush-light transition shadow-sm"
+                        aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
+                        <i id="menu-icon" data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Collapsible Mobile Menu Drawer -->
+            <div id="mobile-menu" class="hidden md:hidden pt-3 pb-2 border-t border-blush/60 mt-3 space-y-2">
+                <div class="grid grid-cols-2 gap-2 text-espresso text-base font-medium">
+                    <a href="#hero-cake" onclick="closeMobileMenu()"
+                        class="min-h-[44px] px-4 py-2.5 rounded-2xl bg-white/80 border border-blush flex items-center gap-2.5 active:bg-blush-light">
+                        <i data-lucide="cake" class="w-4 h-4 text-gold-dark"></i>
+                        <span>The Cake</span>
+                    </a>
+                    <a href="#scrapbook" onclick="closeMobileMenu()"
+                        class="min-h-[44px] px-4 py-2.5 rounded-2xl bg-white/80 border border-blush flex items-center gap-2.5 active:bg-blush-light">
+                        <i data-lucide="camera" class="w-4 h-4 text-gold-dark"></i>
+                        <span>Scrapbook</span>
+                    </a>
+                    <a href="#birthday-letter" onclick="closeMobileMenu()"
+                        class="min-h-[44px] px-4 py-2.5 rounded-2xl bg-white/80 border border-blush flex items-center gap-2.5 active:bg-blush-light">
+                        <i data-lucide="mail" class="w-4 h-4 text-gold-dark"></i>
+                        <span>Letter</span>
+                    </a>
+                    <a href="#reasons" onclick="closeMobileMenu()"
+                        class="min-h-[44px] px-4 py-2.5 rounded-2xl bg-white/80 border border-blush flex items-center gap-2.5 active:bg-blush-light">
+                        <i data-lucide="heart" class="w-4 h-4 text-gold-dark"></i>
+                        <span>Appreciation</span>
+                    </a>
+                </div>
+
+                <div class="pt-1 flex flex-col gap-2">
+                    <button id="mobile-sound-toggle" type="button" onclick="toggleSound()"
+                        class="w-full min-h-[44px] px-4 py-2.5 rounded-2xl text-base font-medium bg-white/95 border border-blush-dark/50 text-espresso flex items-center justify-between active:bg-blush-light shadow-xs">
+                        <span class="flex items-center gap-2">
+                            <i id="mobile-sound-icon" data-lucide="volume-x" class="w-4 h-4 text-espresso-light"></i>
+                            <span id="mobile-sound-label">Music: Off</span>
+                        </span>
+                        <span class="text-xs text-gold-dark font-semibold uppercase tracking-wider">Tap to Toggle</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Toast Notification Banner (Replaces alert) -->
+    <div id="toast-box"
+        class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div
+            class="bg-espresso text-cream px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 border border-gold/30">
+            <i data-lucide="heart" class="w-4 h-4 text-blush fill-blush"></i>
+            <span id="toast-message" class="text-sm font-medium">Wish made!</span>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 space-y-20 sm:space-y-28">
+
+        <!-- 1. HERO SECTION & INTERACTIVE BIRTHDAY CAKE -->
+        <section id="hero-cake" class="pt-8 sm:pt-16 text-center relative scroll-mt-24">
+            <!-- Decorative Floating Stars/Botanicals -->
+            <div class="hidden sm:block absolute top-8 left-10 text-gold/60 animate-float pointer-events-none">
+                <i data-lucide="sparkle" class="w-7 h-7"></i>
+            </div>
+            <div class="hidden sm:block absolute top-20 right-12 text-blush-dark animate-float pointer-events-none"
+                style="animation-delay: 1.5s;">
+                <i data-lucide="heart" class="w-6 h-6"></i>
+            </div>
+
+            <div
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blush-light border border-blush-dark/40 text-espresso-light text-sm font-semibold tracking-wider uppercase mb-5 shadow-xs">
+                <i data-lucide="crown" class="w-4 h-4 text-gold-dark"></i>
+                <span>Celebrating Someone Special</span>
+            </div>
+
+            <h1
+                class="font-serif text-3xl sm:text-6xl lg:text-7xl font-bold text-espresso tracking-tight leading-[1.15] max-w-3xl mx-auto px-2">
+                Happy Birthday to a <span class="italic font-semibold text-gold-dark block sm:inline">Very Close
+                    Friend</span>
+            </h1>
+
+            <p id="hero-subtitle"
+                class="mt-4 sm:mt-5 text-base sm:text-lg text-espresso-light max-w-xl mx-auto leading-relaxed px-3">
+                Today is all about celebrating your kindness, your laughter, and every unforgettable moment you bring
+                into the world.
+            </p>
+
+            <!-- Interactive Birthday Cake Card -->
+            <div
+                class="mt-8 sm:mt-10 max-w-md mx-auto bg-white/80 backdrop-blur-sm border border-blush rounded-3xl p-5 sm:p-8 shadow-soft relative overflow-hidden">
+                <div class="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-blush via-gold to-blush"></div>
+
+                <p id="wish-prompt" class="font-serif italic text-lg sm:text-xl text-espresso mb-2">
+                    Close your eyes, make a wish, and blow out the candles...
+                </p>
+                <p class="text-base text-espresso-light mb-5">Tap the candles or click the button below</p>
+
+                <!-- Custom SVG Illustrated Aesthetic Cake -->
+                <div class="relative flex justify-center items-center py-2 cursor-pointer select-none group min-h-[170px]"
+                    onclick="blowCandles()" role="button" tabindex="0" aria-label="Blow out the birthday candles">
+                    <svg viewBox="0 0 260 210"
+                        class="w-52 sm:w-64 max-w-full h-auto drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.02]">
+                        <!-- Cake Stand -->
+                        <ellipse cx="130" cy="188" rx="95" ry="12" fill="#E5B3A8" opacity="0.45" />
+                        <path d="M115 170 L145 170 L152 186 L108 186 Z" fill="#D4A359" />
+                        <rect x="42" y="164" width="176" height="8" rx="4" fill="#F5E6C8" stroke="#D4A359"
+                            stroke-width="1.5" />
+
+                        <!-- Bottom Cake Tier -->
+                        <rect x="55" y="122" width="150" height="42" rx="10" fill="#F6D6CE" stroke="#E5B3A8"
+                            stroke-width="1.5" />
+                        <!-- Frosting Drips Bottom -->
+                        <path
+                            d="M55 128 Q67 142 80 128 Q92 145 105 128 Q117 140 130 128 Q142 144 155 128 Q167 140 180 128 Q192 142 205 128 L205 122 L55 122 Z"
+                            fill="#FFFDFB" />
+
+                        <!-- Top Cake Tier -->
+                        <rect x="75" y="84" width="110" height="38" rx="9" fill="#FCEEE9" stroke="#E5B3A8"
+                            stroke-width="1.5" />
+                        <!-- Frosting Drips Top -->
+                        <path
+                            d="M75 90 Q86 102 97 90 Q108 105 119 90 Q130 101 141 90 Q152 104 163 90 Q174 101 185 90 L185 84 L75 84 Z"
+                            fill="#FFFDFB" />
+
+                        <!-- Decorative Gold Pearls -->
+                        <circle cx="85" cy="154" r="2.5" fill="#D4A359" />
+                        <circle cx="107" cy="154" r="2.5" fill="#D4A359" />
+                        <circle cx="130" cy="154" r="2.5" fill="#D4A359" />
+                        <circle cx="153" cy="154" r="2.5" fill="#D4A359" />
+                        <circle cx="175" cy="154" r="2.5" fill="#D4A359" />
+
+                        <!-- Candle 1 (Left) -->
+                        <rect x="97" y="54" width="8" height="30" rx="3" fill="#D4A359" />
+                        <line x1="101" y1="54" x2="101" y2="48" stroke="#3D2B24" stroke-width="1.5" />
+                        <circle cx="101" cy="42" r="10" fill="#F5E6C8" opacity="0.5" class="candle-flame" />
+                        <path d="M101 29 C106 37 106 45 101 47 C96 45 96 37 101 29 Z" fill="#F59E0B"
+                            class="candle-flame" />
+                        <path d="M101 34 C103.5 39 103.5 44 101 45.5 C98.5 44 98.5 39 101 34 Z" fill="#FEF3C7"
+                            class="candle-flame" />
+                        <circle cx="101" cy="40" r="4" fill="#9CA3AF" class="smoke-puff" />
+
+                        <!-- Candle 2 (Center) -->
+                        <rect x="126" y="48" width="8" height="36" rx="3" fill="#E5B3A8" />
+                        <line x1="130" y1="48" x2="130" y2="42" stroke="#3D2B24" stroke-width="1.5" />
+                        <circle cx="130" cy="35" r="11" fill="#F5E6C8" opacity="0.55" class="candle-flame" />
+                        <path d="M130 21 C136 30 136 39 130 41 C124 39 124 30 130 21 Z" fill="#F59E0B"
+                            class="candle-flame" />
+                        <path d="M130 27 C133 32 133 38 130 39.5 C127 38 127 32 130 27 Z" fill="#FEF3C7"
+                            class="candle-flame" />
+                        <circle cx="130" cy="34" r="4.5" fill="#9CA3AF" class="smoke-puff" />
+
+                        <!-- Candle 3 (Right) -->
+                        <rect x="155" y="54" width="8" height="30" rx="3" fill="#D4A359" />
+                        <line x1="159" y1="54" x2="159" y2="48" stroke="#3D2B24" stroke-width="1.5" />
+                        <circle cx="159" cy="42" r="10" fill="#F5E6C8" opacity="0.5" class="candle-flame" />
+                        <path d="M159 29 C164 37 164 45 159 47 C154 45 154 37 159 29 Z" fill="#F59E0B"
+                            class="candle-flame" />
+                        <path d="M159 34 C161.5 39 161.5 44 159 45.5 C156.5 44 156.5 39 159 34 Z" fill="#FEF3C7"
+                            class="candle-flame" />
+                        <circle cx="159" cy="40" r="4" fill="#9CA3AF" class="smoke-puff" />
+                    </svg>
+                </div>
+
+                <div class="mt-4 flex flex-wrap justify-center gap-3">
+                    <button id="blow-btn" type="button" onclick="blowCandles()"
+                        class="min-h-[48px] inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-gold to-gold-dark text-white font-semibold text-base shadow-md hover:shadow-glow transition active:scale-95">
+                        <i data-lucide="wind" class="w-5 h-5"></i>
+                        <span>Blow the Candles</span>
+                    </button>
+                    <button id="relight-btn" type="button" onclick="relightCandles()"
+                        class="hidden min-h-[48px] inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-blush-light border border-blush-dark text-espresso font-semibold text-base hover:bg-blush transition active:scale-95">
+                        <i data-lucide="flame" class="w-5 h-5 text-gold-dark"></i>
+                        <span>Relight</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SCRAPBOOK & POLAROID PHOTO GALLERY -->
+        <section id="scrapbook" class="scroll-mt-24">
+            <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+                <span class="text-xs sm:text-sm font-semibold tracking-widest uppercase text-gold-dark">Captured
+                    Moments</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-espresso mt-1">Our Little Scrapbook</h2>
+                <p class="text-base sm:text-lg text-espresso-light mt-2 max-w-xl mx-auto leading-relaxed px-2">
+                    Click <span class="font-semibold text-espresso">"Change Photo"</span> on any Polaroid frame to
+                    upload your favorite pictures of her, or click the captions to customize them!
+                </p>
+            </div>
+
+            <!-- Polaroid Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 items-start px-2 sm:px-0">
+
+                <!-- Polaroid Card 1: Pre-loaded with memory1.jpg -->
+                <div
+                    class="relative bg-white p-4 pb-6 rounded-sm shadow-polaroid transform rotate-0 sm:-rotate-2 hover:rotate-0 transition duration-300 border border-stone-100 max-w-sm mx-auto sm:max-w-none w-full">
+                    <!-- Washi Tape -->
+                    <div
+                        class="washi-tape w-24 h-6 absolute -top-3 left-1/2 -translate-x-1/2 rotate-0 sm:-rotate-2 z-10">
+                    </div>
+
+                    <div
+                        class="relative aspect-[4/5] w-full bg-blush-light/60 overflow-hidden rounded-xs group flex flex-col items-center justify-center border border-blush/50">
+                        <img id="photo-1" src="memory1.jpg" alt="Birthday Memory 1"
+                            class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                            onerror="if(!this.dataset.fallback){this.dataset.fallback=1; this.src='1000729017.jpg';}else{this.classList.add('hidden'); document.getElementById('placeholder-1').classList.remove('hidden');}">
+
+                        <!-- Fallback Placeholder -->
+                        <div id="placeholder-1"
+                            class="hidden text-center p-6 flex flex-col items-center justify-center h-full">
+                            <div
+                                class="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow-sm mb-3 text-gold-dark">
+                                <i data-lucide="camera" class="w-6 h-6"></i>
+                            </div>
+                            <p class="font-serif italic text-espresso text-lg">Your Favorite Photo of Her</p>
+                            <p class="text-sm sm:text-base text-espresso-light mt-1">Tap below to place her picture here
+                            </p>
+                        </div>
+
+                        <!-- Upload Trigger Button (At least 44x44px tap target) -->
+                        <label for="upload-1"
+                            class="absolute bottom-3 right-3 cursor-pointer bg-white/95 hover:bg-espresso hover:text-white text-espresso text-sm font-semibold min-h-[44px] px-4 py-2.5 rounded-full shadow-md inline-flex items-center gap-2 transition opacity-95 hover:opacity-100 active:scale-95 z-10">
+                            <i data-lucide="image-plus" class="w-4 h-4"></i>
+                            <span>Change Photo</span>
+                        </label>
+                        <input id="upload-1" type="file" accept="image/*" class="hidden"
+                            onchange="handlePhotoUpload(event, 1)">
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <p contenteditable="true"
+                            class="font-hand text-2xl sm:text-3xl text-espresso focus:outline-none focus:bg-blush-light/50 rounded px-2 min-h-[44px] flex items-center justify-center">
+                            happy days & endless smiles ♡
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Polaroid Card 2: Pre-loaded with memory2.jpg -->
+                <div
+                    class="relative bg-white p-4 pb-6 rounded-sm shadow-polaroid transform rotate-0 sm:rotate-1 sm:translate-y-4 hover:rotate-0 transition duration-300 border border-stone-100 max-w-sm mx-auto sm:max-w-none w-full">
+                    <!-- Washi Tape -->
+                    <div
+                        class="washi-tape washi-tape-blush w-24 h-6 absolute -top-3 left-1/2 -translate-x-1/2 rotate-0 sm:rotate-3 z-10">
+                    </div>
+
+                    <div
+                        class="relative aspect-[4/5] w-full bg-gradient-to-br from-blush-light via-cream to-gold-light/40 overflow-hidden rounded-xs group flex flex-col items-center justify-center border border-gold/30">
+                        <img id="photo-2" src="memory2.jpg" alt="Birthday Memory 2"
+                            class="w-full h-full object-cover object-[50%_85%] transition-transform duration-500 group-hover:scale-105"
+                            onerror="if(!this.dataset.fallback){this.dataset.fallback=1; this.src='1000729709.jpg';}else{this.classList.add('hidden'); document.getElementById('placeholder-2').classList.remove('hidden');}">
+
+                        <!-- Fallback Placeholder -->
+                        <div id="placeholder-2"
+                            class="hidden text-center p-6 flex flex-col items-center justify-center h-full">
+                            <div
+                                class="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-sm mb-3 text-blush-dark">
+                                <i data-lucide="sparkles" class="w-7 h-7 text-gold-dark"></i>
+                            </div>
+                            <span class="text-xs uppercase tracking-widest text-gold-dark font-semibold">Birthday
+                                Queen</span>
+                            <p class="font-serif text-xl font-semibold text-espresso mt-1">Shine Bright Today & Always
+                            </p>
+                        </div>
+
+                        <!-- Upload Trigger Button (At least 44x44px tap target) -->
+                        <label for="upload-2"
+                            class="absolute bottom-3 right-3 cursor-pointer bg-white/95 hover:bg-espresso hover:text-white text-espresso text-sm font-semibold min-h-[44px] px-4 py-2.5 rounded-full shadow-md inline-flex items-center gap-2 transition opacity-95 hover:opacity-100 active:scale-95 z-10">
+                            <i data-lucide="image-plus" class="w-4 h-4"></i>
+                            <span>Change Photo</span>
+                        </label>
+                        <input id="upload-2" type="file" accept="image/*" class="hidden"
+                            onchange="handlePhotoUpload(event, 2)">
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <p contenteditable="true"
+                            class="font-hand text-2xl sm:text-3xl text-espresso focus:outline-none focus:bg-blush-light/50 rounded px-2 min-h-[44px] flex items-center justify-center">
+                            celebrate you ✨
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Polaroid Card 3: Pre-loaded with 3.jpg -->
+                <div
+                    class="relative bg-white p-4 pb-6 rounded-sm shadow-polaroid transform rotate-0 sm:-rotate-1 hover:rotate-0 transition duration-300 border border-stone-100 sm:col-span-2 lg:col-span-1 max-w-sm mx-auto lg:max-w-none w-full">
+                    <!-- Washi Tape -->
+                    <div
+                        class="washi-tape w-24 h-6 absolute -top-3 left-1/2 -translate-x-1/2 rotate-0 sm:-rotate-1 z-10">
+                    </div>
+
+                    <div
+                        class="relative aspect-[4/5] w-full bg-blush-light/60 overflow-hidden rounded-xs group flex flex-col items-center justify-center border border-blush/50">
+                        <img id="photo-3" src="3.jpg" alt="Birthday Aesthetic Poster"
+                            class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                            onerror="if(!this.dataset.fallback){this.dataset.fallback=1; this.src='watermarked_img_16979895894023089463.png';}else{this.classList.add('hidden'); document.getElementById('placeholder-3').classList.remove('hidden');}">
+
+                        <div id="placeholder-3"
+                            class="hidden text-center p-6 flex flex-col items-center justify-center h-full">
+                            <div
+                                class="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow-sm mb-3 text-gold-dark">
+                                <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                            </div>
+                            <p class="font-serif italic text-espresso text-lg">Unforgettable Memories</p>
+                            <p class="text-sm sm:text-base text-espresso-light mt-1">Tap below to add another snapshot
+                            </p>
+                        </div>
+
+                        <!-- Upload Trigger Button (At least 44x44px tap target) -->
+                        <label for="upload-3"
+                            class="absolute bottom-3 right-3 cursor-pointer bg-white/95 hover:bg-espresso hover:text-white text-espresso text-sm font-semibold min-h-[44px] px-4 py-2.5 rounded-full shadow-md inline-flex items-center gap-2 transition opacity-95 hover:opacity-100 active:scale-95 z-10">
+                            <i data-lucide="image-plus" class="w-4 h-4"></i>
+                            <span>Change Photo</span>
+                        </label>
+                        <input id="upload-3" type="file" accept="image/*" class="hidden"
+                            onchange="handlePhotoUpload(event, 3)">
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <p contenteditable="true"
+                            class="font-hand text-2xl sm:text-3xl text-espresso focus:outline-none focus:bg-blush-light/50 rounded px-2 min-h-[44px] flex items-center justify-center">
+                            grateful for our friendship 🌷
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 3. INTERACTIVE BIRTHDAY LETTER ENVELOPE -->
+        <section id="birthday-letter" class="scroll-mt-24">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <span class="text-xs sm:text-sm font-semibold tracking-widest uppercase text-gold-dark">A Note From the
+                    Heart</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-espresso mt-1">Your Birthday Letter</h2>
+                <p class="text-base text-espresso-light mt-2 px-3">Tap the wax-sealed envelope to unfold your birthday
+                    message</p>
+            </div>
+
+            <div class="max-w-2xl mx-auto px-1 sm:px-0">
+                <!-- Closed Envelope State -->
+                <div id="envelope-wrapper" onclick="openEnvelope()" role="button" tabindex="0"
+                    aria-label="Open Birthday Letter Envelope"
+                    class="cursor-pointer group relative mx-auto max-w-lg bg-gradient-to-b from-blush-light to-blush rounded-3xl p-6 sm:p-12 shadow-soft border border-blush-dark/50 text-center transition-all duration-500 hover:shadow-xl active:scale-[0.98] w-full">
+                    <!-- Decorative Envelope Flap Lines -->
+                    <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-40" viewBox="0 0 400 260"
+                        preserveAspectRatio="none">
+                        <path d="M0 0 L200 140 L400 0" fill="none" stroke="#B08036" stroke-width="1.5" />
+                        <path d="M0 260 L150 130 M400 260 L250 130" fill="none" stroke="#B08036" stroke-width="1" />
+                    </svg>
+
+                    <div class="relative z-10 flex flex-col items-center justify-center py-4">
+                        <!-- Gold Wax Seal -->
+                        <div
+                            class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-gold to-gold-dark text-white flex items-center justify-center shadow-lg ring-4 ring-gold-light/70 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="heart" class="w-8 h-8 fill-white/90"></i>
+                        </div>
+                        <p class="font-serif italic text-xl sm:text-2xl text-espresso mt-5 font-semibold">
+                            For <span id="envelope-recipient-preview">A Very Close Friend</span>
+                        </p>
+                        <span
+                            class="mt-4 min-h-[44px] inline-flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-wider text-gold-dark bg-white/90 px-5 py-2.5 rounded-full shadow-xs active:scale-95">
+                            <i data-lucide="mail-open" class="w-4 h-4"></i>
+                            <span>Tap to Open Letter</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Opened Letter Card (Hidden initially) -->
+                <div id="letter-card"
+                    class="hidden bg-[#FFFDFB] rounded-3xl p-5 sm:p-10 md:p-12 shadow-soft border border-gold/30 relative transition-all duration-500">
+                    <!-- Corner Gold Flourishes -->
+                    <div class="flex items-center justify-between border-b border-blush pb-4 mb-6">
+                        <div class="flex items-center gap-2 text-gold-dark">
+                            <i data-lucide="sparkles" class="w-5 h-5"></i>
+                            <span class="text-xs sm:text-sm font-semibold uppercase tracking-widest">Birthday
+                                Wishes</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button type="button" onclick="toggleEditLetter()" id="edit-letter-btn"
+                                class="min-h-[44px] inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-sm font-semibold bg-blush-light text-espresso hover:bg-blush transition active:scale-95">
+                                <i data-lucide="pencil" class="w-4 h-4"></i>
+                                <span>Personalize</span>
+                            </button>
+                            <button type="button" onclick="closeEnvelope()"
+                                class="min-h-[44px] min-w-[44px] w-11 h-11 inline-flex items-center justify-center rounded-full text-espresso-light hover:bg-stone-100 transition active:scale-95"
+                                title="Fold back into envelope" aria-label="Close letter">
+                                <i data-lucide="x" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Display Mode -->
+                    <div id="letter-display-mode" class="space-y-5">
+                        <p class="font-serif text-2xl sm:text-3xl text-espresso">
+                            Dear <span id="display-name" class="italic text-gold-dark font-semibold">My Close
+                                Friend</span>,
+                        </p>
+
+                        <p id="display-message" class="font-serif text-lg sm:text-xl leading-relaxed text-espresso/90">
+                            Wishing you a day as wonderful and beautiful as you are! Thank you for being the close
+                            friend anyone could ask for. Have the happiest birthday!
+                        </p>
+
+                        <div class="pt-4 flex items-center justify-between">
+                            <div>
+                                <p class="text-sm uppercase tracking-widest text-espresso-light">With warmest wishes,
+                                </p>
+                                <p id="display-sender" class="font-hand text-3xl text-espresso mt-1">Your Best Friend
+                                    Forever ♡</p>
+                            </div>
+                            <button type="button" onclick="triggerCelebration()"
+                                class="w-12 h-12 min-h-[48px] min-w-[48px] rounded-full bg-blush-light border border-gold/30 flex items-center justify-center text-gold-dark hover:scale-110 active:scale-95 transition"
+                                title="Send Birthday Sparkles" aria-label="Send Sparkles">
+                                <i data-lucide="sparkles" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Edit / Personalize Mode -->
+                    <div id="letter-edit-mode" class="hidden space-y-4">
+                        <div>
+                            <label
+                                class="block text-sm font-semibold uppercase tracking-wider text-espresso-light mb-1.5">Her
+                                Name / Nickname</label>
+                            <input id="input-name" type="text" value="My Close Friend"
+                                class="w-full min-h-[48px] px-4 py-3 rounded-xl bg-cream border border-blush-dark/60 text-espresso text-base focus:outline-none focus:border-gold">
+                        </div>
+                        <div>
+                            <label
+                                class="block text-sm font-semibold uppercase tracking-wider text-espresso-light mb-1.5">Your
+                                Birthday Message</label>
+                            <textarea id="input-message" rows="4"
+                                class="w-full px-4 py-3 rounded-xl bg-cream border border-blush-dark/60 text-espresso text-base focus:outline-none focus:border-gold leading-relaxed">Wishing you a day as wonderful and beautiful as you are! Thank you for being the close friend anyone could ask for. Have the happiest birthday!</textarea>
+                        </div>
+                        <div>
+                            <label
+                                class="block text-sm font-semibold uppercase tracking-wider text-espresso-light mb-1.5">Signed
+                                By</label>
+                            <input id="input-sender" type="text" value="Your Close Friend ♡"
+                                class="w-full min-h-[48px] px-4 py-3 rounded-xl bg-cream border border-blush-dark/60 text-espresso text-base focus:outline-none focus:border-gold">
+                        </div>
+                        <div class="flex flex-wrap justify-end gap-2 pt-2">
+                            <button type="button" onclick="toggleEditLetter()"
+                                class="min-h-[44px] px-5 py-2.5 rounded-full text-base font-semibold text-espresso-light hover:bg-stone-100 active:scale-95">Cancel</button>
+                            <button type="button" onclick="saveLetterChanges()"
+                                class="min-h-[44px] px-6 py-2.5 rounded-full text-base font-semibold bg-espresso text-cream hover:bg-espresso-light shadow-sm active:scale-95">Save
+                                Note</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. INTERACTIVE "REASONS YOU'RE AN AMAZING FRIEND" FLIP CARDS -->
+        <section id="reasons" class="scroll-mt-24 overflow-hidden">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-xs sm:text-sm font-semibold tracking-widest uppercase text-gold-dark">Little
+                    Appreciation Notes</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-espresso mt-1">Reasons You're an Amazing
+                    Friend</h2>
+                <p class="text-base text-espresso-light mt-2 px-3">Tap each card to flip and reveal a note</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- Flip Card 1 -->
+                <div class="perspective-1000 min-h-[220px] h-60 sm:h-56 cursor-pointer select-none active:scale-[0.98] transition-transform"
+                    onclick="this.querySelector('.card-inner').classList.toggle('rotate-y-180')">
+                    <div class="card-inner relative w-full h-full transform-style-3d">
+                        <!-- Front -->
+                        <div
+                            class="backface-hidden absolute inset-0 bg-white/90 border border-blush rounded-3xl p-6 shadow-soft flex flex-col items-center justify-center text-center">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-blush-light text-gold-dark flex items-center justify-center mb-3">
+                                <i data-lucide="sun" class="w-6 h-6"></i>
+                            </div>
+                            <span class="font-serif text-lg font-semibold text-espresso">Reason #01</span>
+                            <span class="text-sm text-espresso-light mt-1">Tap to reveal</span>
+                        </div>
+                        <!-- Back -->
+                        <div
+                            class="backface-hidden rotate-y-180 absolute inset-0 bg-gradient-to-br from-blush-light to-blush border border-blush-dark/40 rounded-3xl p-6 shadow-soft flex flex-col items-center justify-center text-center">
+                            <p class="font-serif italic text-base sm:text-lg text-espresso leading-snug">
+                                "Your positive energy and genuine smile can brighten even the dullest days."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flip Card 2 -->
+                <div class="perspective-1000 min-h-[220px] h-60 sm:h-56 cursor-pointer select-none active:scale-[0.98] transition-transform"
+                    onclick="this.querySelector('.card-inner').classList.toggle('rotate-y-180')">
+                    <div class="card-inner relative w-full h-full transform-style-3d">
+                        <!-- Front -->
+                        <div
+                            class="backface-hidden absolute inset-0 bg-white/90 border border-blush rounded-3xl p-6 shadow-soft flex flex-col items-center justify-center text-center">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-gold-light/60 text-gold-dark flex items-center justify-center mb-3">
+                                <i data-lucide="ear" class="w-6 h-6"></i>
+                            </div>
+                            <span class="font-serif text-lg font-semibold text-espresso">Reason #02</span>
+                            <span class="text-sm text-espresso-light mt-1">Tap to reveal</span>
+                        </div>
+                        <!-- Back -->
+                        <div
+                            class="backface-hidden rotate-y-180 absolute inset-0 bg-gradient-to-br from-gold-light/60 to-cream border border-gold/40 rounded-3xl p-6 shadow-soft flex flex-col items-center justify-center text-center">
+                            <p class="font-serif italic text-base sm:text-lg text-espresso leading-snug">
+                                "You always listen with patience, empathy, and never judge."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flip Card 3 -->
+                <div class="perspective-1000 min-h-[220px] h-60 sm:h-56 cursor-pointer select-none active:scale-[0.98] transition-transform"
+                    onclick="this.querySelector('.card-inner').classList.toggle('rotate-y-180')">
+                    <div class="card-inner relative w-full h-full transform-style-3d">
+                        <!-- Front -->
+                        <div
+                            class="backface-hidden absolute inset-0 bg-white/90 border border-blush rounded-3xl p-6 shadow-soft flex flex-col items-center justify-center text-center">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-blush-light text-gold-dark flex items-center justify-center mb-3">
+                                <i data-lucide="laugh" class="w-6 h-6"></i>
+                            </div>
+                            <span class="font-serif text-lg font-semibold text-espresso">Reason #03</span>
+                            <span class="text-sm text-espresso-light mt-1">Tap to reveal</span>
+                        </div>
+                        <!-- Back -->
+                        <div
+                            class="backface-hidden rotate-y-180 absolute inset-0 bg-gradient-to-br from-blush-light to-blush border border-blush-dark/40 rounded-3xl p-6 shadow-soft flex flex-col items-center justify-center text-center">
+                            <p class="font-serif italic text-base sm:text-lg text-espresso leading-snug">
+                                "Every simple hangout turns into an unforgettable memory filled with laughter."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flip Card 4 -->
+                <div class="perspective-1000 min-h-[220px] h-60 sm:h-56 cursor-pointer select-none active:scale-[0.98] transition-transform"
+                    onclick="this.querySelector('.card-inner').classList.toggle('rotate-y-180')">
+                    <div class="card-inner relative w-full h-full transform-style-3d">
+                        <!-- Front -->
+                        <div
+                            class="backface-hidden absolute inset-0 bg-white/90 border border-blush rounded-3xl p-6 shadow-soft flex flex-col items-center justify-center text-center">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-gold-light/60 text-gold-dark flex items-center justify-center mb-3">
+                                <i data-lucide="gem" class="w-6 h-6"></i>
+                            </div>
+                            <span class="font-serif text-lg font-semibold text-espresso">Reason #04</span>
+                            <span class="text-sm text-espresso-light mt-1">Tap to reveal</span>
+                        </div>
+                        <!-- Back -->
+                        <div
+                            class="backface-hidden rotate-y-180 absolute inset-0 bg-gradient-to-br from-gold-light/60 to-cream border border-gold/40 rounded-3xl p-6 shadow-soft flex flex-col items-center justify-center text-center">
+                            <p class="font-serif italic text-base sm:text-lg text-espresso leading-snug">
+                                "Having a close friend as genuine and supportive as you is a true blessing."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-blush/70 bg-white/60 py-10 px-4 text-center">
+        <div class="max-w-xl mx-auto space-y-4">
+            <p class="font-serif italic text-xl sm:text-2xl text-espresso">
+                Here's to another year of happiness, health, and dreams coming true!
+            </p>
+            <div class="flex flex-wrap justify-center gap-3 pt-2">
+                <button type="button" onclick="triggerCelebration()"
+                    class="min-h-[48px] inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-blush-light border border-blush-dark/50 text-espresso text-base font-semibold hover:bg-blush active:scale-95 transition">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-gold-dark"></i>
+                    <span>Shower Confetti</span>
+                </button>
+                <button type="button" onclick="copyShareWish()"
+                    class="min-h-[48px] inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-espresso text-cream text-base font-semibold hover:bg-espresso-light active:scale-95 transition">
+                    <i data-lucide="copy" class="w-4 h-4 text-gold"></i>
+                    <span>Copy Birthday Wish</span>
+                </button>
+            </div>
+            <p class="text-base text-espresso-light pt-4">Crafted with warmth for a very close friend</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Logic: Confetti, Web Audio Chimes, Cake Candles, Photo Upload & Envelope -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // ==========================================
+        // 0. MOBILE NAVIGATION DRAWER
+        // ==========================================
+        let mobileMenuOpen = false;
+        function toggleMobileMenu() {
+            mobileMenuOpen = !mobileMenuOpen;
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            const btn = document.getElementById('mobile-menu-btn');
+
+            if (mobileMenuOpen) {
+                menu.classList.remove('hidden');
+                if (icon) icon.setAttribute('data-lucide', 'x');
+                if (btn) btn.setAttribute('aria-expanded', 'true');
+            } else {
+                menu.classList.add('hidden');
+                if (icon) icon.setAttribute('data-lucide', 'menu');
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+            }
+            lucide.createIcons();
+        }
+
+        function closeMobileMenu() {
+            if (mobileMenuOpen) {
+                toggleMobileMenu();
+            }
+        }
+
+        // ==========================================
+        // 1. GENTLE BIRTHDAY CHIME (WEB AUDIO API)
+        // ==========================================
+        let soundEnabled = false;
+        let audioCtx = null;
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('sound-icon');
+            const label = document.getElementById('sound-label');
+            const btn = document.getElementById('sound-toggle');
+
+            const mIcon = document.getElementById('mobile-sound-icon');
+            const mLabel = document.getElementById('mobile-sound-label');
+            const mBtn = document.getElementById('mobile-sound-toggle');
+
+            if (soundEnabled) {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                if (icon) icon.setAttribute('data-lucide', 'volume-2');
+                if (label) label.textContent = 'Chime On';
+                if (btn) btn.classList.add('border-gold', 'bg-gold-light/30');
+
+                if (mIcon) mIcon.setAttribute('data-lucide', 'volume-2');
+                if (mLabel) mLabel.textContent = 'Birthday Music: On';
+                if (mBtn) mBtn.classList.add('border-gold', 'bg-gold-light/30');
+
+                playBirthdayChime();
+                showToast('Gentle birthday chime enabled');
+            } else {
+                if (icon) icon.setAttribute('data-lucide', 'volume-x');
+                if (label) label.textContent = 'Sound Off';
+                if (btn) btn.classList.remove('border-gold', 'bg-gold-light/30');
+
+                if (mIcon) mIcon.setAttribute('data-lucide', 'volume-x');
+                if (mLabel) mLabel.textContent = 'Birthday Music: Off';
+                if (mBtn) mBtn.classList.remove('border-gold', 'bg-gold-light/30');
+
+                showToast('Sound muted');
+            }
+            lucide.createIcons();
+        }
+
+        // Plays a soft, warm music-box style arpeggio
+        function playBirthdayChime() {
+            if (!soundEnabled) return;
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+
+                // Gentle "Happy Birthday" opening motif frequencies (C4, C4, D4, C4, F4, E4)
+                const notes = [
+                    { freq: 261.63, time: 0.0, dur: 0.35 },
+                    { freq: 261.63, time: 0.35, dur: 0.35 },
+                    { freq: 293.66, time: 0.72, dur: 0.65 },
+                    { freq: 261.63, time: 1.40, dur: 0.65 },
+                    { freq: 349.23, time: 2.08, dur: 0.65 },
+                    { freq: 329.63, time: 2.76, dur: 1.10 }
+                ];
+
+                const now = audioCtx.currentTime;
+                notes.forEach(note => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(note.freq, now + note.time);
+
+                    gain.gain.setValueAtTime(0.0001, now + note.time);
+                    gain.gain.exponentialRampToValueAtTime(0.08, now + note.time + 0.05);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + note.time + note.dur);
+
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+
+                    osc.start(now + note.time);
+                    osc.stop(now + note.time + note.dur + 0.05);
+                });
+            } catch (e) {
+                console.warn('Audio playback skipped:', e);
+            }
+        }
+
+        // ==========================================
+        // 2. CONFETTI & SPARKLE PARTICLE ENGINE
+        // ==========================================
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let animationFrameId = null;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const palette = ['#D4A359', '#F5E6C8', '#E5B3A8', '#F6D6CE', '#B08036', '#FFFDFB'];
+
+        function createConfettiBurst(count = 95) {
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: -20 - Math.random() * 120,
+                    size: 5 + Math.random() * 7,
+                    color: palette[Math.floor(Math.random() * palette.length)],
+                    speedY: 2.2 + Math.random() * 3.5,
+                    speedX: (Math.random() - 0.5) * 3,
+                    rotation: Math.random() * 360,
+                    rotationSpeed: (Math.random() - 0.5) * 6,
+                    shape: Math.random() > 0.35 ? 'rect' : 'circle',
+                    opacity: 0.95
+                });
+            }
+            if (!animationFrameId) {
+                animateConfetti();
+            }
+        }
+
+        function animateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((p, index) => {
+                p.y += p.speedY;
+                p.x += p.speedX + Math.sin(p.y * 0.02) * 0.6;
+                p.rotation += p.rotationSpeed;
+
+                if (p.y > canvas.height - 80) {
+                    p.opacity -= 0.02;
+                }
+
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate((p.rotation * Math.PI) / 180);
+                ctx.globalAlpha = Math.max(0, p.opacity);
+                ctx.fillStyle = p.color;
+
+                if (p.shape === 'rect') {
+                    ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+                } else {
+                    ctx.beginPath();
+                    ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                ctx.restore();
+
+                if (p.y > canvas.height + 20 || p.opacity <= 0) {
+                    particles.splice(index, 1);
+                }
+            });
+
+            if (particles.length > 0) {
+                animationFrameId = requestAnimationFrame(animateConfetti);
+            } else {
+                animationFrameId = null;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+
+        function triggerCelebration() {
+            createConfettiBurst(110);
+            playBirthdayChime();
+        }
+
+        // ==========================================
+        // 3. INTERACTIVE BIRTHDAY CAKE CANDLES
+        // ==========================================
+        let candlesLit = true;
+
+        function blowCandles() {
+            if (!candlesLit) return;
+            candlesLit = false;
+
+            const flames = document.querySelectorAll('.candle-flame');
+            const smokes = document.querySelectorAll('.smoke-puff');
+            flames.forEach(f => f.classList.add('blown-out'));
+            smokes.forEach(s => {
+                s.classList.remove('active');
+                void s.offsetWidth; // trigger reflow
+                s.classList.add('active');
+            });
+
+            document.getElementById('wish-prompt').textContent = '✨ Wish made! May all your dreams come true! ✨';
+            document.getElementById('blow-btn').classList.add('hidden');
+            document.getElementById('relight-btn').classList.remove('hidden');
+
+            triggerCelebration();
+            showToast('Happy Birthday! Your wish is sent to the stars ✨');
+        }
+
+        function relightCandles() {
+            candlesLit = true;
+            const flames = document.querySelectorAll('.candle-flame');
+            flames.forEach(f => f.classList.remove('blown-out'));
+
+            document.getElementById('wish-prompt').textContent = 'Close your eyes, make a wish, and blow out the candles...';
+            document.getElementById('blow-btn').classList.remove('hidden');
+            document.getElementById('relight-btn').classList.add('hidden');
+        }
+
+        // ==========================================
+        // 4. SCRAPBOOK PHOTO UPLOAD HANDLER
+        // ==========================================
+        function handlePhotoUpload(event, cardNumber) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const imgEl = document.getElementById(`photo-${cardNumber}`);
+                const placeholderEl = document.getElementById(`placeholder-${cardNumber}`);
+
+                // Reset custom crop/rotation transforms if user uploads a new custom photo
+                imgEl.className = 'w-full h-full object-cover transition-transform duration-500';
+                imgEl.src = e.target.result;
+                imgEl.classList.remove('hidden');
+                placeholderEl.classList.add('hidden');
+                showToast(`Photo updated on Polaroid #${cardNumber}!`);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // ==========================================
+        // 5. INTERACTIVE ENVELOPE & LETTER EDITOR
+        // ==========================================
+        function openEnvelope() {
+            document.getElementById('envelope-wrapper').classList.add('hidden');
+            const letterCard = document.getElementById('letter-card');
+            letterCard.classList.remove('hidden');
+            createConfettiBurst(60);
+            playBirthdayChime();
+        }
+
+        function closeEnvelope() {
+            document.getElementById('letter-card').classList.add('hidden');
+            document.getElementById('envelope-wrapper').classList.remove('hidden');
+        }
+
+        function toggleEditLetter() {
+            const displayMode = document.getElementById('letter-display-mode');
+            const editMode = document.getElementById('letter-edit-mode');
+            displayMode.classList.toggle('hidden');
+            editMode.classList.toggle('hidden');
+        }
+
+        function saveLetterChanges() {
+            const nameVal = document.getElementById('input-name').value.trim() || 'My Close Friend';
+            const msgVal = document.getElementById('input-message').value.trim();
+            const senderVal = document.getElementById('input-sender').value.trim() || 'Your Close Friend ♡';
+
+            document.getElementById('display-name').textContent = nameVal;
+            document.getElementById('envelope-recipient-preview').textContent = nameVal;
+            if (msgVal) {
+                document.getElementById('display-message').textContent = msgVal;
+            }
+            document.getElementById('display-sender').textContent = senderVal;
+
+            toggleEditLetter();
+            showToast('Birthday letter updated!');
+        }
+
+        // ==========================================
+        // 6. TOAST & CLIPBOARD SHARE HELPER
+        // ==========================================
+        let toastTimeout = null;
+        function showToast(message) {
+            const toastBox = document.getElementById('toast-box');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.textContent = message;
+
+            toastBox.classList.remove('translate-y-24', 'opacity-0');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toastBox.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
+        }
+
+        function copyShareWish() {
+            const msg = document.getElementById('display-message').textContent.trim();
+            const textArea = document.createElement('textarea');
+            textArea.value = `Happy Birthday! 🎂✨ ${msg}`;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast('Birthday wish copied to clipboard!');
+            } catch (err) {
+                showToast('Ready to celebrate!');
+            }
+            document.body.removeChild(textArea);
+        }
+
+        // Gentle initial celebratory sparkle on load
+        window.addEventListener('load', () => {
+            setTimeout(() => createConfettiBurst(45), 400);
+        });
+    </script>
+</body>
+
+</html>
